@@ -8,17 +8,17 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws NonExistingElementException {
-        int[] references = new int[]{1, 2, 3, 4, 2, 1, 5, 6, 2, 1, 2, 3, 7, 6, 3, 2, 1, 2, 3, 6};
-        //int[] references = new int[]{2, 1, 2, 4};
+        /*int[] references = new int[]{1, 2, 3, 4, 2, 1, 5, 6, 2, 1, 2, 3, 7, 6, 3, 2, 1, 2, 3, 6};
+        //int[] references = new int[]{1, 2, 3, 4, 2, 7, 8, 3, 4, 5, 6, 1, 9};
         FIFO fifo = new FIFO(3, references);
-        fifo.implementAlgorithm();
+        //fifo.implementAlgorithm();
 
         System.out.println("========================");
         System.out.println("========================");
         System.out.println("========================");
 
         LRU lru = new LRU(3, references);
-        lru.implementAlgorithm();
+        //lru.implementAlgorithm();
 
         System.out.println("========================");
         System.out.println("========================");
@@ -26,7 +26,7 @@ public class Main {
 
         ArrayList<Integer> arrayList = new ArrayList<>();
         arrayList.add(2);
-        SecondChance secondChance = new SecondChance(3, references, arrayList);
+        SecondChance secondChance = new SecondChance(4, references, arrayList);
         secondChance.implementAlgorithm();
 
         System.out.println("========================");
@@ -34,20 +34,20 @@ public class Main {
         System.out.println("========================");
 
         Optimal optimal = new Optimal(3, references);
-        optimal.implementAlgorithm();
+        //optimal.implementAlgorithm();
 
         System.out.println("========================");
         System.out.println("========================");
         System.out.println("========================");
 
         LFU lfu = new LFU(3, references, 10, 1, 4);
-        lfu.implementAlgorithm();
+        //lfu.implementAlgorithm();
 
         System.out.println("========================");
         System.out.println("========================");
-        System.out.println("========================");
+        System.out.println("========================");*/
 
-        /*Scanner scan = new Scanner(System.in);
+        Scanner scan = new Scanner(System.in);
 
 
         try {
@@ -64,41 +64,46 @@ public class Main {
                 int reference = scan.nextInt();
                 references[i] = reference;
             }
-            System.out.println("Algorithms to work with: \n" +
-                    "1-FIFO\n2-LRU\n3-Second Chance\n4-LFU\n5-Optimal algorithm");
-            System.out.println("Enter --exit to exit application!");
-            String userInput = "";
+            int errorCounter = 0;
+            String userInput = null;
             do {
+                System.out.println("Algorithms to work with: \n" +
+                        "1-FIFO\n2-LRU\n3-Second Chance\n4-LFU\n5-Optimal algorithm");
+                System.out.println("Enter --exit to exit application!");
                 userInput = scan.nextLine();
-                if(userInput == "1") {
+                if(userInput.equals("1")) {
                     FIFO fifo = new FIFO(numOfPages, references);
                     fifo.implementAlgorithm();
                 }
-                else if(userInput == "2") {
+                else if(userInput.equals("2")) {
                     LRU lru = new LRU(numOfPages, references);
                     lru.implementAlgorithm();
                 }
-                else if(userInput == "3") {
+                else if(userInput.equals("3")) {
                     ArrayList<Integer> referencesList = new ArrayList<>();
                     for(int elem : references) {
                         referencesList.add(elem);
                     }
                     ArrayList<Integer> functionList = new ArrayList<>();
                     System.out.println("Enter which value(s) you want to have R bit: ");
-                    System.out.println("close to exit input");
-                    String extraInput;
+                    System.out.println("--close to exit input");
+                    String extraInput = null;
                     do {
                         extraInput = scan.nextLine();
-                        if(referencesList.contains(Integer.parseInt(extraInput))) {
-                            functionList.add(Integer.parseInt(extraInput));
+                        if(!extraInput.equals("--close")) {
+                            if(referencesList.contains(Integer.parseInt(extraInput))) {
+                                functionList.add(Integer.parseInt(extraInput));
+                            }
+                            else {
+                                throw new NonExistingElementException();
+                            }
                         }
-                        else {
-                            throw new NonExistingElementException();
-                        }
-                    } while(extraInput != "--close");
-                    SecondChance secondChance = new SecondChance(numOfPages, references,referencesList );
+                    } while(!extraInput.equals("--close"));
+
+                    SecondChance secondChance = new SecondChance(numOfPages, references, functionList);
+                    secondChance.implementAlgorithm();
                 }
-                else if(userInput == "4") {
+                else if(userInput.equals("4")) {
                     System.out.println("Input initial value: ");
                     int initialValue = scan.nextInt();
                     System.out.println("Input decrement value: ");
@@ -108,11 +113,15 @@ public class Main {
                     LFU lfu = new LFU(numOfPages, references, initialValue, decrementValue, incrementValue);
                     lfu.implementAlgorithm();
                 }
-                else if(userInput == "5") {
+                else if(userInput.equals("5")) {
                     Optimal optimal = new Optimal(numOfPages, references);
                     optimal.implementAlgorithm();
                 }
-                else if(userInput == "--exit") {
+                else if(errorCounter == 0) {
+                    errorCounter++;
+                    //do nothing, just to avoid unnecessary printing!
+                }
+                else if(userInput.equals("--exit")) {
                     System.out.println("Exiting app!");
                 }
                 else {
@@ -128,6 +137,6 @@ public class Main {
         }
         finally {
             scan.close();
-        }*/
+        }
     }
 }

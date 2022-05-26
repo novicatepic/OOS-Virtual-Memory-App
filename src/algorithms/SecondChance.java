@@ -36,7 +36,7 @@ public class SecondChance extends Algorithm {
         }
         else {
             int position = findFirstEmptyPosition(column);
-            if(hashMap.get(reference)) {
+            if(hashMap.get(reference) != false) {
                 dynamicBitSettings.replace(reference, true);
                 for(int i = position; i > 2; i--) {
                     matrix[i][column] = matrix[i-1][column];
@@ -63,14 +63,29 @@ public class SecondChance extends Algorithm {
         else {
             if(hashMap.get(Integer.parseInt(matrix[newBoundary-1][column])) &&
                     dynamicBitSettings.get(Integer.parseInt((matrix[newBoundary-1][column])))) {
+                if(numOfPages > 1) {
+                    String first = matrix[3][column];
+                }
                 String element = matrix[newBoundary-1][column];
                 dynamicBitSettings.replace(Integer.parseInt(element), false);
-                for(int i = (newBoundary-1); i >= 3; i--) {
+                for(int i = (newBoundary-1); i > 2; i--) {
                     matrix[i][column] = matrix[i-1][column];
                 }
-                matrix[newBoundary-1][column] = matrix[newBoundary-2][column];
-                matrix[3][column] = element;
-                matrix[2][column] = String.valueOf(reference);
+
+                if(numOfPages != 1) {
+                    matrix[2][column] = String.valueOf(reference);
+                }
+                else {
+                    matrix[2][column] = element;
+                }
+
+                for(int i = (newBoundary-1); i > 3; i--) {
+                    matrix[i][column] = matrix[i-1][column];
+                }
+                if(numOfPages > 1) {
+                    matrix[3][column] = element;
+                }
+
             }
             else {
                 for(int i = newBoundary - 1; i > 2; i--) {
