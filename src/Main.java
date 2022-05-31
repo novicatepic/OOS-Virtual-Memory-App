@@ -2,8 +2,6 @@ import algorithms.*;
 import exceptions.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -55,8 +53,8 @@ public class Main {
             int numOfPages = scan.nextInt();
             System.out.println("Input number of references: ");
             int numOfReferences = scan.nextInt();
-            if(numOfPages < 0 || numOfReferences < 0) {
-                throw new NegativeNumberException();
+            if(numOfPages < 2 || numOfReferences < 0) {
+                throw new InvalidNumberException();
             }
             int[] references = new int[numOfReferences];
             for(int i = 0; i < numOfReferences; i++) {
@@ -129,7 +127,7 @@ public class Main {
                 }
             } while(!"--exit".equals(userInput));
         }
-        catch(NegativeNumberException exc) {
+        catch(InvalidNumberException exc) {
             System.out.println(exc.getMessage());
         }
         catch(Exception e) {
