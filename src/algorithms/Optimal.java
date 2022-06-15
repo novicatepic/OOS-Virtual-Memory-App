@@ -31,14 +31,16 @@ public class Optimal extends Algorithm {
         int finalArrayCounter = 0;
         ArrayList<String> elementsOfColumn = getElementsOfColumn(column);
 
-        for(int i = column; i < references.length; i++) {
+        //DODAO column + 1
+        for(int i = column + 1; i < references.length; i++) {
             if(finalArrayCounter < (numOfPages - 1) && elementsOfColumn.contains(String.valueOf(references[i]))) {
                 list.add(String.valueOf(references[i]));
                 finalArrayCounter++;
             }
         }
 
-        if(list.size() < (numOfPages - 1)) {
+        //uklonio, bilo numOfPages - 1
+        if(list.size() < (numOfPages)) {
             for(int i = newBoundary - 1; i >= 2; i--) {
                 if(!list.contains(matrix[i][column])) {
                     return matrix[i][column];

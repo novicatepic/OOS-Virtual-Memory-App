@@ -6,25 +6,33 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws NonExistingElementException {
-        /*int[] references = new int[]{1, 2, 3, 4, 2, 1, 5, 6, 2, 1, 2, 3, 7, 6, 3, 2, 1, 2, 3, 6};
+        //int[] references = new int[]{8, 6, 4, 2, 3, 7, 4, 6, 3, 3, 5, 2, 3, 2, 5, 6, 1, 3, 7, 3};
+        //int[] references = new int[]{1, 2, 3, 4, 2, 1, 5, 6, 2, 1, 2, 3, 7, 6, 3, 2, 1, 2, 3, 6};
+        //int[] references = new int[]{6, 8, 1, 6, 5, 1, 2, 4, 7, 1, 2, 3, 4, 5, 2, 4, 3, 1, 5, 7};
+        //int[] references = new int[]{3, 1, 3, 5, 8, 7, 6, 2, 1, 6, 7, 8, 6, 3, 7, 3, 1, 2, 3, 6};
+        //int[] references = new int[]{1, 1, 4, 4, 4, 7, 6, 2, 1, 6, 7, 8, 6, 3, 7, 3, 1, 2, 3, 6};
+        //int[] references = new int[]{2, 4, 3, 1, 5, 7, 6, 8, 1, 6, 5, 6, 2, 4, 7, 1, 2, 3, 4, 5};
+        //int[] references = new int[]{6, 5, 6, 2, 4, 7, 1, 2, 3, 4, 5, 2, 4, 3, 1, 5, 7, 6, 8, 1};
+        //int[] references = new int[]{4, 5, 2, 4, 3, 1, 5, 7, 6, 8, 1, 2, 3, 6, 2, 4, 7, 1, 2, 1};
+        int[] references = new int[]{6, 8, 1, 6, 5, 1, 2, 4, 7, 1, 2, 3, 4, 5, 2, 4, 3, 1, 5, 7};
         //int[] references = new int[]{1, 2, 3, 4, 2, 7, 8, 3, 4, 5, 6, 1, 9};
         FIFO fifo = new FIFO(3, references);
-        //fifo.implementAlgorithm();
+        fifo.implementAlgorithm();
 
         System.out.println("========================");
         System.out.println("========================");
         System.out.println("========================");
 
         LRU lru = new LRU(3, references);
-        //lru.implementAlgorithm();
+        lru.implementAlgorithm();
 
         System.out.println("========================");
         System.out.println("========================");
         System.out.println("========================");
 
         ArrayList<Integer> arrayList = new ArrayList<>();
-        arrayList.add(2);
-        SecondChance secondChance = new SecondChance(4, references, arrayList);
+        arrayList.add(1);
+        SecondChance secondChance = new SecondChance(3, references, arrayList);
         secondChance.implementAlgorithm();
 
         System.out.println("========================");
@@ -32,20 +40,20 @@ public class Main {
         System.out.println("========================");
 
         Optimal optimal = new Optimal(3, references);
-        //optimal.implementAlgorithm();
+        optimal.implementAlgorithm();
 
         System.out.println("========================");
         System.out.println("========================");
         System.out.println("========================");
 
         LFU lfu = new LFU(3, references, 10, 1, 4);
-        //lfu.implementAlgorithm();
+        lfu.implementAlgorithm();
 
         System.out.println("========================");
         System.out.println("========================");
-        System.out.println("========================");*/
+        System.out.println("========================");
 
-        Scanner scan = new Scanner(System.in);
+        /*Scanner scan = new Scanner(System.in);
 
 
         try {
@@ -135,6 +143,6 @@ public class Main {
         }
         finally {
             scan.close();
-        }
+        }*/
     }
 }
