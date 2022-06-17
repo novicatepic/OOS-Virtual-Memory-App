@@ -1,5 +1,6 @@
 package algorithms;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -61,11 +62,27 @@ public class SecondChance extends Algorithm {
             }
         }
         else {
+            //dodao 3 linije ispod
+            if(hashMap.containsKey(reference) && !dynamicBitSettings.get(reference)) {
+                dynamicBitSettings.replace(reference, true);
+            }
+            boolean didRemove = false;
+            int temp = newBoundary - 1;
+            ArrayList<String> arrayList = new ArrayList<>();
+            ArrayList<Integer> positions = new ArrayList<>();
             if(hashMap.get(Integer.parseInt(matrix[newBoundary-1][column])) &&
                     dynamicBitSettings.get(Integer.parseInt((matrix[newBoundary-1][column])))) {
-                if(numOfPages > 1) {
-                    String first = matrix[3][column];
+                //dodao while petlju
+                while(hashMap.get(Integer.parseInt(matrix[temp][column])) &&
+                        dynamicBitSettings.get(Integer.parseInt((matrix[temp][column])))) {
+                    arrayList.add(matrix[temp][column]);
+                    positions.add(temp);
+                    if(temp == newBoundary - 2) {
+                        didRemove = true;
+                    }
+                    temp--;
                 }
+
                 String element = matrix[newBoundary-1][column];
                 dynamicBitSettings.replace(Integer.parseInt(element), false);
                 for(int i = (newBoundary-1); i > 2; i--) {
@@ -84,6 +101,20 @@ public class SecondChance extends Algorithm {
                 }
                 if(numOfPages > 1) {
                     matrix[3][column] = element;
+                }
+                if(didRemove) {
+                    System.out.println("Element at " + 1 + " " + arrayList.get(1));
+                    dynamicBitSettings.replace(Integer.parseInt(arrayList.get(1)), false);
+                    int k = newBoundary - 1;
+                    for(int i = 1; i < arrayList.size(); i++) {
+                        //matrix[k--][column] = arrayList.get(i);
+                        matrix[positions.get(i) + 1][column] = arrayList.get(i);
+                    }
+                    /*for(int i = newBoundary - 1; i > arrayList.size() + 1; i--) {
+                        System.out.println("Element at " + k + " " + arrayList.get(k));
+                        matrix[i][column] = arrayList.get(k++);
+                    }*/
+                    //matrix[newBoundary - 1][column] = arrayList.get(1);
                 }
 
             }
