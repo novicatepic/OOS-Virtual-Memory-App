@@ -1,21 +1,15 @@
 package algorithms;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 
 public class SecondChance extends Algorithm {
-    private HashMap<Integer, Boolean> hashMap;
-    private HashMap<Integer, Boolean> dynamicBitSettings;
-
-    public  SecondChance() {
-        super();
-    }
+    private final HashMap<Integer, Boolean> hashMap;
+    private final HashMap<Integer, Boolean> dynamicBitSettings;
 
     public SecondChance(int numOfPages, int[] references, ArrayList<Integer> rBit) {
         super(numOfPages, references);
-        hashMap = new HashMap<Integer, Boolean>();
+        hashMap = new HashMap<>();
         dynamicBitSettings = new HashMap<>();
         for(int elem : references) {
             if(rBit.contains(elem) && !hashMap.containsKey(elem)) {
@@ -37,7 +31,7 @@ public class SecondChance extends Algorithm {
         }
         else {
             int position = findFirstEmptyPosition(column);
-            if(hashMap.get(reference) != false) {
+            if(hashMap.get(reference)) {
                 dynamicBitSettings.replace(reference, true);
                 for(int i = position; i > 2; i--) {
                     matrix[i][column] = matrix[i-1][column];
@@ -73,7 +67,7 @@ public class SecondChance extends Algorithm {
             if(hashMap.get(Integer.parseInt(matrix[newBoundary-1][column])) &&
                     dynamicBitSettings.get(Integer.parseInt((matrix[newBoundary-1][column])))) {
                 //dodao while petlju
-                while(hashMap.get(Integer.parseInt(matrix[temp][column])) &&
+                while((!"".equals(matrix[temp][column]) && matrix[temp][column] != null && !"PF".equals(matrix[temp][column])) && hashMap.get(Integer.parseInt(matrix[temp][column])) &&
                         dynamicBitSettings.get(Integer.parseInt((matrix[temp][column])))) {
                     arrayList.add(matrix[temp][column]);
                     positions.add(temp);
@@ -83,40 +77,35 @@ public class SecondChance extends Algorithm {
                     temp--;
                 }
 
-                String element = matrix[newBoundary-1][column];
-                dynamicBitSettings.replace(Integer.parseInt(element), false);
-                for(int i = (newBoundary-1); i > 2; i--) {
-                    matrix[i][column] = matrix[i-1][column];
-                }
-
-                if(numOfPages != 1) {
-                    matrix[2][column] = String.valueOf(reference);
-                }
-                else {
-                    matrix[2][column] = element;
-                }
-
-                for(int i = (newBoundary-1); i > 3; i--) {
-                    matrix[i][column] = matrix[i-1][column];
-                }
-                if(numOfPages > 1) {
-                    matrix[3][column] = element;
-                }
-                if(didRemove) {
-                    System.out.println("Element at " + 1 + " " + arrayList.get(1));
-                    dynamicBitSettings.replace(Integer.parseInt(arrayList.get(1)), false);
-                    int k = newBoundary - 1;
-                    for(int i = 1; i < arrayList.size(); i++) {
-                        //matrix[k--][column] = arrayList.get(i);
-                        matrix[positions.get(i) + 1][column] = arrayList.get(i);
+                if(arrayList.size() != numOfPages) {
+                    String element = matrix[newBoundary-1][column];
+                    dynamicBitSettings.replace(Integer.parseInt(element), false);
+                    for(int i = (newBoundary-1); i > 2; i--) {
+                        matrix[i][column] = matrix[i-1][column];
                     }
-                    /*for(int i = newBoundary - 1; i > arrayList.size() + 1; i--) {
-                        System.out.println("Element at " + k + " " + arrayList.get(k));
-                        matrix[i][column] = arrayList.get(k++);
-                    }*/
-                    //matrix[newBoundary - 1][column] = arrayList.get(1);
-                }
 
+                    if(numOfPages != 1) {
+                        matrix[2][column] = String.valueOf(reference);
+                    }
+                    else {
+                        matrix[2][column] = element;
+                    }
+
+                    for(int i = (newBoundary-1); i > 3; i--) {
+                        matrix[i][column] = matrix[i-1][column];
+                    }
+                    if(numOfPages > 1) {
+                        matrix[3][column] = element;
+                    }
+                    if(didRemove) {
+                        System.out.println("Element at " + 1 + " " + arrayList.get(1));
+                        dynamicBitSettings.replace(Integer.parseInt(arrayList.get(1)), false);
+                        for(int i = 1; i < arrayList.size(); i++) {
+                            matrix[positions.get(i) + 1][column] = arrayList.get(i);
+                        }
+                    }
+
+                }
             }
             else {
                 for(int i = newBoundary - 1; i > 2; i--) {

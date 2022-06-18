@@ -18,7 +18,6 @@ abstract public class Algorithm {
         this.references = references;
         this.numOfReferences = references.length;
         int matrixRows = numOfPages + 2;
-        int matrixColumns = numOfReferences;
         newBoundary = numOfPages + 2;
         this.matrix = new String[matrixRows][numOfReferences];
         for(int i = 0; i < numOfReferences; i++) {
@@ -78,7 +77,6 @@ abstract public class Algorithm {
     }
 
     boolean isColumnFull(int column) {
-        int  counter = 0;
         for(int i = 2; i < newBoundary; i++) {
             if(matrix[i][column] == null) {
                 return false;

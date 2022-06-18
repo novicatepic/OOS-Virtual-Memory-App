@@ -2,10 +2,6 @@ package algorithms;
 
 public class FIFO extends Algorithm{
 
-    public FIFO() {
-        super();
-    }
-
     public FIFO(int numOfPages, int[] references) {
         super(numOfPages, references);
     }

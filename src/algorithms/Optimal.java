@@ -4,8 +4,6 @@ import java.util.ArrayList;
 
 public class Optimal extends Algorithm {
 
-    public Optimal() {}
-
     public Optimal(int numOfPages, int[] references) {
         super(numOfPages, references);
     }
@@ -27,16 +25,20 @@ public class Optimal extends Algorithm {
     }
 
     private String lookAhead(int column) {
-        ArrayList<String> list = new ArrayList<String>();
+        ArrayList<String> list = new ArrayList<>();
         int finalArrayCounter = 0;
         ArrayList<String> elementsOfColumn = getElementsOfColumn(column);
 
         //DODAO column + 1
         for(int i = column + 1; i < references.length; i++) {
-            if(finalArrayCounter < (numOfPages - 1) && elementsOfColumn.contains(String.valueOf(references[i]))) {
+            if(!list.contains(String.valueOf(references[i])) && finalArrayCounter < (numOfPages - 1) && elementsOfColumn.contains(String.valueOf(references[i]))) {
                 list.add(String.valueOf(references[i]));
                 finalArrayCounter++;
             }
+        }
+
+        if(list.size() == numOfPages) {
+            return list.get(list.size() - 1);
         }
 
         //uklonio, bilo numOfPages - 1

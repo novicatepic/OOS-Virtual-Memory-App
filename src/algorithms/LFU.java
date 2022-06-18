@@ -1,18 +1,13 @@
 package algorithms;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 
 public class LFU extends Algorithm {
-    private int initialValue;
-    private int decrementValue;
-    private int incrementValue;
-    private HashMap<String, Integer> hashMap;
-
-    public LFU() {
-        super();
-    }
+    private final int initialValue;
+    private final int decrementValue;
+    private final int incrementValue;
+    private final HashMap<String, Integer> hashMap;
 
     public LFU(int numOfPages, int[] references, int initialValue, int decrementValue, int incrementValue) {
         super(numOfPages, references);
@@ -21,7 +16,7 @@ public class LFU extends Algorithm {
         this.incrementValue = incrementValue;
         hashMap = new HashMap<>();
         for (int elem : references) {
-            if (!hashMap.containsKey(elem)) {
+            if (!hashMap.containsKey(String.valueOf(elem))) {
                 hashMap.put(String.valueOf(elem), initialValue);
             }
         }

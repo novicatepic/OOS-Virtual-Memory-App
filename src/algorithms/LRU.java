@@ -2,10 +2,6 @@ package algorithms;
 
 public class LRU extends Algorithm {
 
-    public LRU() {
-        super();
-    }
-
     public LRU(int numOfPages, int[] references) {
         super(numOfPages, references);
     }
