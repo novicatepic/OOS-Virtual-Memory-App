@@ -7,11 +7,8 @@ abstract public class Algorithm {
     int numOfReferences;
     int[] references;
     String[][] matrix;
+    //last row
     int newBoundary;
-
-    public Algorithm() {
-        super();
-    }
 
     public Algorithm(int numOfPages, int[] references) {
         this.numOfPages = numOfPages;
@@ -26,17 +23,22 @@ abstract public class Algorithm {
     }
 
     abstract void processNonFullColumn(int column, int reference);
+
     public void implementAlgorithm() {
+        //put references in first row
         initFirstRow();
         for(int i = 0; i < numOfReferences; i++) {
             if(i > 0) {
+                //put old elements in new column and then proceed to do whatever algorithm does
                 rewriteOldColumn(i);
             }
 
+            //check if it's new element, if it is then page fault is set
             if(isPageFault(i, matrix[0][i])) {
                 matrix[1][i] = "PF";
             }
 
+            //for each algorithm, we process full and non-full column, my implementation
             if(isColumnFull(i)) {
                 processFullColumn(i, references[i]);
             }
@@ -44,17 +46,22 @@ abstract public class Algorithm {
                 processNonFullColumn(i, references[i]);
             }
         }
+        //after we finish algorithm, we print full matrix and count efficiency
         printMatrix();
         efficiency();
     }
+
+    //each algorithm is gonna have it's own implementation of processing full column
     abstract void processFullColumn(int column, int reference);
 
+    //initializing first row with references
     void initFirstRow() {
        for(int i = 0; i < references.length; i++) {
            matrix[0][i] = String.valueOf(references[i]);
        }
     }
 
+    //simple function to check if there is page fault
     boolean isPageFault(int column, String element) {
         int  counter = 0;
         boolean isNullInColumn = false;
@@ -76,6 +83,7 @@ abstract public class Algorithm {
         return isNullInColumn;
     }
 
+    //help function, name says it all
     boolean isColumnFull(int column) {
         for(int i = 2; i < newBoundary; i++) {
             if(matrix[i][column] == null) {
@@ -85,6 +93,7 @@ abstract public class Algorithm {
         return true;
     }
 
+    //find pos of element, useful help function
     int findPositionOfElement(int element, int column) {
         for(int i = 2; i < newBoundary; i++) {
             if(String.valueOf(element).equals(matrix[i][column])) {
@@ -94,12 +103,14 @@ abstract public class Algorithm {
         return -1;
     }
 
+    //rewrite everything from old column before updating it in the next step
     void rewriteOldColumn(int newColumn) {
         for(int i = 2; i < newBoundary; i++) {
             matrix[i][newColumn] = matrix[i][newColumn - 1];
         }
     }
 
+    //find first empty position in non-full column
     int findFirstEmptyPosition(int column) {
         for(int i = 2; i < newBoundary; i++) {
             if(matrix[i][column] == null) {
@@ -109,6 +120,7 @@ abstract public class Algorithm {
         return -1;
     }
 
+    //help function for page fault and algorithms
     boolean findIfElementAlreadyExistsInColumn(int column, int element) {
         for(int i = 2; i < newBoundary; i++) {
             if(matrix[i][column] != null && matrix[i][column].equals(String.valueOf(element))) {
@@ -118,6 +130,7 @@ abstract public class Algorithm {
         return false;
     }
 
+    //in the end, we have to get algorithm efficiency
     int countNumOfPageFaults() {
         int numOfPageFaults = 0;
         for(int i = 0; i < numOfReferences; i++) {
@@ -128,6 +141,7 @@ abstract public class Algorithm {
         return numOfPageFaults;
     }
 
+    //as we've learned, quick simple function
     double countPfPercentage() {
         int numOfFaults = countNumOfPageFaults();
         double percentage = numOfFaults / (double)numOfReferences;
@@ -150,6 +164,7 @@ abstract public class Algorithm {
         }
     }
 
+    //final efficiency count
     void efficiency() {
         int pageFaults = countNumOfPageFaults();
         double percentage = countPfPercentage();
@@ -157,6 +172,10 @@ abstract public class Algorithm {
         System.out.println(" => pf = " + pageFaults + " / " + numOfReferences + " = " + percentage + "%");
     }
 
+    //help functions for fifo, lru, optimal
+    //probably should've implemented it in some other class or something, since other two algorithms
+    //don't need these function
+    //we just move elements
     void processNonFullColumnIfElementDoesntExistFIFOLRUOptimal(int column, int reference) {
         int firstPosition = findFirstEmptyPosition(column);
         if(firstPosition == 2) {
@@ -170,6 +189,7 @@ abstract public class Algorithm {
         }
     }
 
+    //shift elements downwards
     void processFullColumnIfElementDoesntExistFIFOLRU(int column, int reference) {
         for(int i = newBoundary - 1; i >= 2; i--) {
             matrix[i][column] = matrix[i-1][column];
@@ -177,6 +197,7 @@ abstract public class Algorithm {
         matrix[2][column] = String.valueOf(reference);
     }
 
+    //find elements in column, especially useful for optimal algorithm
     ArrayList<String> getElementsOfColumn(int column) {
         ArrayList<String> list = new ArrayList<>();
         for(int i = 2; i < newBoundary; i++) {

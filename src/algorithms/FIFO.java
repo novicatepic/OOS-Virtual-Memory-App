@@ -6,6 +6,7 @@ public class FIFO extends Algorithm{
         super(numOfPages, references);
     }
 
+    //nothing special
     @Override
     void processNonFullColumn(int column, int reference) {
         if(!findIfElementAlreadyExistsInColumn(column, reference)) {

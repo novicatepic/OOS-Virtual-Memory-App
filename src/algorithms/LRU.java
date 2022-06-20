@@ -26,6 +26,9 @@ public class LRU extends Algorithm {
         }
     }
 
+    //in lru when we find a element that already exists
+    //we put it at the top
+    //and shift others from old position downwards
     private void helpForLRUProcessing(int column, int reference) {
         int position = findPositionOfElement(reference, column);
         for(int i = position; i > 2; i--) {

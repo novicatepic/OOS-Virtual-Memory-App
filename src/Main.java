@@ -6,20 +6,20 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        //int[] references = new int[]{8, 6, 4, 2, 3, 7, 4, 6, 3, 3, 5, 2, 3, 2, 5, 6, 1, 3, 7, 3};
+        /*//int[] references = new int[]{8, 6, 4, 2, 3, 7, 4, 6, 3, 3, 5, 2, 3, 2, 5, 6, 1, 3, 7, 3};
         //int[] references = new int[]{1, 2, 3, 4, 2, 1, 5, 6, 2, 1, 2, 3, 7, 6, 3, 2, 1, 2, 3, 6};
         //int[] references = new int[]{6, 8, 1, 6, 5, 1, 2, 4, 7, 1, 2, 3, 4, 5, 2, 4, 3, 1, 5, 7};
-        //int[] references = new int[]{3, 1, 3, 5, 8, 7, 6, 2, 1, 6, 7, 8, 6, 3, 7, 3, 1, 2, 3, 6};
+        int[] references = new int[]{3, 1, 3, 5, 8, 7, 6, 2, 1, 6, 7, 8, 6, 3, 7, 3, 1, 2, 3, 6};
         //int[] references = new int[]{1, 1, 4, 4, 4, 7, 6, 2, 1, 6, 7, 8, 6, 3, 7, 3, 1, 2, 3, 6};
         //int[] references = new int[]{2, 4, 3, 1, 5, 7, 6, 8, 1, 6, 5, 6, 2, 4, 7, 1, 2, 3, 4, 5};
         //int[] references = new int[]{6, 5, 6, 2, 4, 7, 1, 2, 3, 4, 5, 2, 4, 3, 1, 5, 7, 6, 8, 1};
-        //int[] references = new int[]{4, 5, 2, 4, 3, 1, 5, 7, 6, 8, 1, 2, 3, 6, 2, 4, 7, 1, 2, 1};
+        //int[] references = new int[]{4, 5, 2, 4, 3, 1, 5, 7, 6, 8, 1, 2, 3, 6, 2, 4, 7, 1, 2, 3};
         //int[] references = new int[]{6, 8, 1, 6, 5, 1, 2, 4, 7, 1, 2, 3, 4, 5, 2, 4, 3, 1, 5, 7};
         //ne radi, ipak radi
         //int[] references = new int[]{2, 3, 6, 2, 4, 7, 1, 2, 3, 4, 5, 2, 4, 3, 1, 5, 7, 6, 8, 1};
         //int[] references = new int[]{2, 7, 3, 1, 1, 1, 3, 7, 6, 3, 4, 8, 4, 2, 8, 8, 8, 7, 4, 2};
         //int[] references = new int[]{7, 6, 8, 1, 2, 4, 5, 2, 4, 3, 1, 5, 3, 6, 2, 4, 7, 1, 2, 3};
-        /*FIFO fifo = new FIFO(4, references);
+        FIFO fifo = new FIFO(4, references);
         fifo.implementAlgorithm();
 
         System.out.println("========================");
@@ -35,8 +35,8 @@ public class Main {
 
         ArrayList<Integer> arrayList = new ArrayList<>();
         arrayList.add(1);
-        arrayList.add(3);
-        SecondChance secondChance = new SecondChance(4, references, arrayList);
+        //arrayList.add(3);
+        SecondChance secondChance = new SecondChance(3, references, arrayList);
         secondChance.implementAlgorithm();
 
         System.out.println("========================");
@@ -50,7 +50,7 @@ public class Main {
         System.out.println("========================");
         System.out.println("========================");
 
-        LFU lfu = new LFU(4, references, 10, 1, 4);
+        LFU lfu = new LFU(3, references, 10, 1, 4);
         lfu.implementAlgorithm();
 
         System.out.println("========================");
