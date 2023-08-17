@@ -1,9 +1,10 @@
-# OOS-Project
+# Operating System Course Project
 
-This project is about different algorithms which allow the user to work with virtual memory. Algorithms which are implemented are FIFO, LRU, Second Chance, LFU and Optimal algorithm.
 
-Applications allows user to specify number of memory frames and number of memory references.  After that, user inputs pages (numbers) and selects one or more algorithms and simulation starts. Results are shown to the user. Besides results, number of page faults are displayed to the user. Page faults represent efficiency of concrete algorithm. In OOS-PROJEKTNI.pdf there is a picture which shows how simulation should look.
+This project focuses on various algorithms that enable users to interact with virtual memory. The implemented algorithms include FIFO, LRU, Second Chance, LFU, and the Optimal algorithm.
 
-Application is implemented in Java programming language and it is a console application.
+The application allows users to define the number of memory frames and the quantity of memory references. Following this, users input page numbers and select one or more algorithms, initiating the simulation process. The results, along with the number of page faults, are presented to the user. Page faults serve as a measure of the efficiency of each specific algorithm. A visual representation of the simulation can be found in the "OOS-PROJEKTNI.pdf" document.
 
-If you want to check out specification in Serbian language, read OOS-PROJEKTNI.pdf.
+The application has been developed using the Java programming language and is designed as a console-based program.
+
+For the Serbian language specification, please refer to the "OOS-PROJEKTNI.pdf" document.
